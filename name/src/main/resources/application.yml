@@ -1,2 +1,5 @@
-server.port: 7070
-name: Ryan
+spring:
+  config:
+    import: "optional:configserver:"
+  application:
+    name: name

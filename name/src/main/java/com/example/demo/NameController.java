@@ -4,9 +4,6 @@ import java.util.logging.Logger;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * @author Ryan Baxter
- */
 @RestController
 public class NameController {
 
