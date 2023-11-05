@@ -1,25 +1,31 @@
 package com.example.demo;
 
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-/**
- * @author Ryan Baxter
- */
+import com.netflix.appinfo.InstanceInfo;
+import com.netflix.discovery.EurekaClient;
+
 @Service
 public class GreetingService {
-	private static final String URL = "http://localhost:9090";
 	private RestTemplate rest;
-
-	public GreetingService(RestTemplate rest) {
-		this.rest = rest;
+	private EurekaService eurekaService;
+	
+	public GreetingService(RestTemplate rest, EurekaService eurekaService) {
+		this.rest= rest;
+		this.eurekaService = eurekaService;
 	}
 
 	public String getGreeting() {
+		String URL = eurekaService.getServiceUrl("greeting");
 		return rest.getForObject(URL, String.class);
 	}
 
 	public String getGreeting(String locale) {
+		String URL = eurekaService.getServiceUrl("greeting");
 		return rest.getForObject(new StringBuilder().append(URL).append("/").append(locale).toString(), String.class);
 	}
 }
