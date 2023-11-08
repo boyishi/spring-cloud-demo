@@ -5,7 +5,6 @@ import org.springframework.web.client.RestTemplate;
 
 @Service
 public class NameService {
-	private static final String URL = "http://localhost:7070";
 	private RestTemplate rest;
 	private EurekaService eurekaService;
 	
